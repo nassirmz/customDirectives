@@ -3,20 +3,26 @@ angular
   .directive('userElement', userElement);
 
 function userElement() {
+
+  //Directive Definition Object
   var directive = {
     restrict: 'EA',
-    replace: false,
+    replace: true,
     link: link,
     templateUrl: 'components/users/usersView.html',
-    controller: 'UsersController',
-    controllerAs: 'usersCtrl',
     scope: {
       userInfo: '=',
     },
   }
   return directive;
 
+  //link function to manipulate the DOM
   function link(scope, element, attr) {
-    console.log(scope.userInfo, 'userDirective');
+    element.on('mouseenter', function () {
+      element.css('opacity', '0.5');
+    });
+    element.on('mouseleave', function () {
+      element.css('opacity', '1.0');
+    });
   }
 }
